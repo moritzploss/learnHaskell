@@ -1,7 +1,12 @@
 module Lib
     ( someFunc
+    , Lib.first
     , Lib.take
     ) where
+
+first :: [a] -> Maybe a
+first []    = Nothing
+first (x:_) = Just x
 
 take :: Int -> [b] -> [b]
 take _ []     = []
