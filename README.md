@@ -21,7 +21,7 @@ with `hlint`. (I never got code completion and lookups to work with VS Code)
 Installing `haskell-stack` can take quite a while (half an hour?) and may fail
 if you have anti-malware software installed. It may also fail because of a
 `readline` version mismatch, which results in an error similar to this halfway
-though the installation:
+through the installation:
 
     dyld: Library not loaded: /usr/local/opt/readline/lib/libreadline.7.dylib
       Referenced from: /usr/local/bin/awk
@@ -42,7 +42,7 @@ for more information on this issue.
 
 ## Project Setup
 
-Assuming a working installation of *stack*, run:
+Assuming a working installation of **stack**, run:
 
     stack build
     stack test
