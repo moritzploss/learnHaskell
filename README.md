@@ -42,7 +42,7 @@ for more information on this issue.
 
 ## Project Setup
 
-Assuming a working installation of **stack**, run:
+Assuming a working installation of `stack`, run:
 
     stack build
     stack test
