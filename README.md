@@ -4,9 +4,10 @@ Learning Haskell!
 
 ## Haskell Setup
 
+### Installing `stack`
+
 Setting up a working development environment for Haskell can be challenging.
-After days of exploring different options and trying to fix broken configurations,
-what I found easiest (on macOS) is to use `brew` to install `stack`, and to
+What I found easiest (on macOS) is to use `brew` to install `stack`, and to
 *not* try to install `cabal` and `ghc` manually:
 
     brew install haskell-stack
@@ -14,6 +15,8 @@ what I found easiest (on macOS) is to use `brew` to install `stack`, and to
 Then install **IntelliJ** and the `IntelliJ-Haskell` plugin, which provides
 syntax highlighting, code completion, type lookups with `hoogle`, and linting
 with `hlint`. (I never got code completion and lookups to work with VS Code)
+
+### Troubleshooting
 
 Installing `haskell-stack` can take quite a while (half an hour?) and may fail
 if you have anti-malware software installed. It may also fail because of a
