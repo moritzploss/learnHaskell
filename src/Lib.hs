@@ -3,8 +3,10 @@ module Lib
     , Lib.take
     ) where
 
-take :: a -> [b] -> [b]
-take n [x] = [x]
+take :: Int -> [b] -> [b]
+take _ []     = []
+take 0 _      = []
+take n (x:xs) = x:Lib.take (n - 1) xs
 
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
