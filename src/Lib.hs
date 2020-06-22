@@ -1,12 +1,22 @@
 module Lib
   ( someFunc
+  , Lib.filter
   , Lib.first
   , Lib.map
   , Lib.max
   , Lib.quickSort
   , Lib.reduce
+  , Lib.reduceWhile
   , Lib.take
   ) where
+
+filter :: (a -> Bool) -> [a] -> [a]
+filter predicate []     = []
+filter predicate (x:xs) =
+  if predicate x
+  then x : filterTail
+  else filterTail
+  where filterTail = Lib.filter predicate xs
 
 first :: [a] -> Maybe a
 first []    = Nothing
@@ -31,8 +41,15 @@ quickSort (x:xs) =
   in smaller ++ [x] ++ greater
 
 reduce :: (a -> b -> a) -> a -> [b] -> a
-reduce reducer accumulator []     = accumulator
+reduce _ accumulator []           = accumulator
 reduce reducer accumulator (x:xs) = Lib.reduce reducer (reducer accumulator x) xs
+
+reduceWhile :: (a -> b -> Bool) -> (a -> b -> a) -> a -> [b] -> a
+reduceWhile _ _ accumulator []                   = accumulator
+reduceWhile predicate reducer accumulator (x:xs) =
+  if predicate accumulator x
+  then Lib.reduceWhile predicate reducer (reducer accumulator x) xs
+  else accumulator
 
 take :: Int -> [b] -> [b]
 take _ []     = []
