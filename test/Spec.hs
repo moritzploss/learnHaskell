@@ -7,6 +7,7 @@ import qualified Spec.QuickSort
 import qualified Spec.Reduce
 import qualified Spec.ReduceWhile
 import qualified Spec.Take
+import qualified Spec.Tree
 
 main :: IO Counts
 main = do
@@ -18,3 +19,4 @@ main = do
   runTestTT Spec.Reduce.testList
   runTestTT Spec.ReduceWhile.testList
   runTestTT Spec.Take.testList
+  runTestTT Spec.Tree.testList
