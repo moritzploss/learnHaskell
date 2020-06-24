@@ -1,11 +1,11 @@
 module Lib
   ( main
   , module Export
-  , module Foo
   ) where
 
 import Lib.Tree as Export
-import Lib.Util as Foo
+import Lib.Util as Export
+import Lib.TypeClasses as Export
 
 main :: IO ()
 main = putStrLn "Hello"

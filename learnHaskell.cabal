@@ -36,6 +36,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , containers == 0.*
   default-language: Haskell2010
 
 executable learnHaskell-exe
@@ -48,6 +49,7 @@ executable learnHaskell-exe
   build-depends:
       base >=4.7 && <5
     , learnHaskell
+    , containers == 0.*
   default-language: Haskell2010
 
 test-suite learnHaskell-test
