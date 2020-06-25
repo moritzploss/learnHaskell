@@ -4,6 +4,7 @@ module Lib.TypeClasses
 
 import qualified Data.Map as Map
 import Prelude hiding (Maybe, Just, Nothing)
+import Lib.Tree
 
 class Eq' a where
   (===) :: a -> a -> Bool
@@ -46,3 +47,36 @@ plant :: Vegetable -> Int -> Field -> Field
 plant vegetable count field =
   let updateCount _ newCount oldCount = newCount + oldCount
   in Map.insertWithKey updateCount vegetable count field
+  
+  
+class Truthy a where
+  truthy :: a -> Bool
+
+instance Truthy Int where
+  truthy 0 = False
+  truthy _ = True
+  
+instance Truthy [a] where
+  truthy [] = False
+  truthy _ = True
+
+instance Truthy Bool where
+  truthy = id
+  
+instance Truthy (Maybe a) where
+  truthy (Just _) = True
+  truthy Nothing = False
+  
+class Fnctor f where
+  fmp :: (a -> b) -> f a -> f b
+
+instance Fnctor [] where
+  fmp = map
+  
+instance Fnctor Maybe where
+  fmp func (Just x) = Just $ func x
+  fmp func Nothing  = Nothing
+
+instance Fnctor (Either a) where
+  fmp func (Left x)  = Left x
+  fmp func (Right y) = Right $ func y

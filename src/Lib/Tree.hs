@@ -3,6 +3,7 @@ module Lib.Tree
   , treeCreate
   , treeHas
   , treeFromList
+  , Tree
   ) where
 
 data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show, Read, Eq)
@@ -26,3 +27,7 @@ treeHas x (Node a left right)
 
 treeFromList :: (Ord a) => [a] -> Tree a
 treeFromList = foldr treeInsert EmptyTree
+
+instance Functor Tree where
+  fmap func EmptyTree = EmptyTree
+  fmap func (Node x left right) = Node (func x) (fmap func left) (fmap func right)
