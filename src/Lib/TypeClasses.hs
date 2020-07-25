@@ -100,3 +100,19 @@ data Vector a = Vector a a a deriving (Show)
 
 vplus :: (Num t) => Vector t -> Vector t -> Vector t
 vplus (Vector x1 y1 z1) (Vector x2 y2 z2) = Vector (x1 + x2) (y1 + y2) (z1 + z2)
+
+data Stem = Stem { length :: Float, angle :: Float, stack :: Float }
+
+data Bar = Bar { reach :: Float, drop :: Float, width :: Float }
+
+data Spacer = Spacer { height :: Float }
+
+data HeadSet = HeadSet { stack :: Float }
+
+data Cockpit = Cockpit {
+  stem :: Stem,
+  bar :: Bar,
+  spacer :: Spacer,
+  headSet :: HeadSet
+  }
+  
