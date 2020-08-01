@@ -30,6 +30,9 @@ library
       Lib
     , Lib.Tree
     , Lib.Util
+    , Katas
+    , Katas.MergeChecker
+    , Lib.TypeClasses
   other-modules:
       Paths_learnHaskell
   hs-source-dirs:
@@ -67,4 +70,6 @@ test-suite learnHaskell-test
     , test-framework-hunit
     , HUnit
     , containers == 0.*
+    , QuickCheck
+    , hspec
   default-language: Haskell2010
