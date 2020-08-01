@@ -1,6 +1,9 @@
 # learnHaskell
 
-Learning Haskell!
+Learning Haskell by reading [Learn You a Haskell](http://learnyouahaskell.com/) and doing Katas on Codewars!
+The `Lib` module contains a wild mix of exercises, code snippets and ideas and is used as a playground. The
+`Katas` module contains solutions to Codewars Katas. The corresponding unit tests are mostly written in `HUnit`,
+but also use `Hspec` and `QuickCheck` for tests coming from Codewars.
 
 ## Haskell Setup
 
