@@ -10,10 +10,12 @@ import qualified Spec.Take
 import qualified Spec.Tree
 
 import qualified Spec.MergeChecker
+import qualified Spec.SecretFromTriplets
 
 main :: IO Counts
 main = do
   Spec.MergeChecker.spec
+  Spec.SecretFromTriplets.spec
   runTestTT Spec.Filter.testList
   runTestTT Spec.First.testList
   runTestTT Spec.Map.testList
