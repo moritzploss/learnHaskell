@@ -1,12 +1,12 @@
 module Spec.SecretFromTriplets (spec) where
 
-import Katas (recoverSecret, findLeading, recoverSecret, removeChar, removeEmpty)
+import Katas (findLeadingChar, recoverSecret, removeChar, removeEmpty)
 import Test.Hspec
 import Test.QuickCheck
 
 spec :: IO ()
 spec = hspec $ do
-    describe "recover secrets" $ do
+    describe "Kata: SecretFromTriplets" $ do
       let triplets = ["tup"
                      ,"whi"
                      ,"tsu"
@@ -15,10 +15,11 @@ spec = hspec $ do
                      ,"tis"
                      ,"whs"
                      ]
-      it "find leading char in string" $
-        (foldl findLeading 't' triplets) == 'w'
-      it "remove char from list of strings" $
+      it "removes char from list of strings" $
         removeChar 'c' ["abc", "cde", "sdf"] == ["ab", "de", "sdf"]
-      it "remove empty strings from list" $
+      it "removes empty strings from list" $
         removeEmpty ["abc", "", "sdf"] == ["abc", "sdf"]
-      it "recovers secret" $ recoverSecret triplets == "whatisup"
+      it "finds leading char in list of strings" $
+        findLeadingChar triplets == 'w'
+      it "recovers secret" $
+        recoverSecret triplets == "whatisup"
