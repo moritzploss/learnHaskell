@@ -17,7 +17,7 @@ What I found easiest (on macOS) is to use `brew` to install `stack`, and to
     
 Then install **IntelliJ** and the **IntelliJ-Haskell** plugin, which provides
 syntax highlighting, code completion, type lookups with `hoogle`, and linting
-with `hlint`. (I never got code completion and lookups to work with VS Code)
+with `hlint`.
 
 ### Troubleshooting
 

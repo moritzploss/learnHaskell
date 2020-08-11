@@ -4,8 +4,8 @@ import Katas (isMerge)
 import Test.Hspec
 import Test.QuickCheck
 
-spec :: IO ()
-spec = hspec $ do
+spec :: Spec
+spec = do
     describe "isMerge" $ do
       it "works on empty strings" $ isMerge "" "" ""
       it "returns True if one part is emtpy and the other is equal to s" $ 

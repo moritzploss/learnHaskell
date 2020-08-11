@@ -4,8 +4,8 @@ import Katas (findLeadingChar, recoverSecret, removeChar, removeEmpty)
 import Test.Hspec
 import Test.QuickCheck
 
-spec :: IO ()
-spec = hspec $ do
+spec :: Spec
+spec = do
     describe "Kata: SecretFromTriplets" $ do
       let triplets = ["tup"
                      ,"whi"
