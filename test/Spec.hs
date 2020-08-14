@@ -14,12 +14,14 @@ import qualified Spec.Tree
 import qualified Spec.MergeChecker
 import qualified Spec.SecretFromTriplets
 import qualified Spec.Stream
+import qualified Spec.TreeByLevels
 
 main :: IO Counts
 main = do
   hspec Spec.MergeChecker.spec
   hspec Spec.SecretFromTriplets.spec
   hspec Spec.Stream.spec
+  hspec Spec.TreeByLevels.spec
   runTestTT Spec.Filter.testList
   runTestTT Spec.First.testList
   runTestTT Spec.Map.testList

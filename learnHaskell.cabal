@@ -34,6 +34,7 @@ library
     , Katas.MergeChecker
     , Katas.SecretFromTriplets
     , Katas.Stream
+    , Katas.TreeByLevels
     , Lib.TypeClasses
   other-modules:
       Paths_learnHaskell
