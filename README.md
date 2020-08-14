@@ -1,3 +1,5 @@
+![test](https://github.com/moritzploss/learnHaskell/workflows/Tests/badge.svg)
+
 # learnHaskell
 
 Learning Haskell by reading [Learn You a Haskell](http://learnyouahaskell.com/) and doing Katas on Codewars!
