@@ -20,7 +20,7 @@ testBuildTree x = treeByLevels (buildTree x) `shouldBe` x
 
 spec :: Spec
 spec = do
-  describe "treeByLevels on static trees" $ do
+  describe "Kata: TreeByLevels" $ do
     it "returns [] given Nothing" $
       treeByLevels Nothing `shouldBe` ([] :: [()])
     it "handles tree with one element" $

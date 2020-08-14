@@ -2,7 +2,7 @@ module PIN where
 
 import Data.List (permutations)
 
-getCandidates :: Int -> [Char]
+getCandidates :: Int -> String
 getCandidates 1 = ['1', '2', '4']
 getCandidates 2 = ['1', '2', '3', '5']
 getCandidates 3 = ['2', '3', '6']
@@ -17,7 +17,7 @@ getCandidates 0 = ['8', '0']
 toDigits :: Int -> [Int]
 toDigits int
   | int <= 9  = [int]
-  | otherwise = int `div` 10 : toDigits (int `mod` 10) 
+  | otherwise = int `div` 10 : toDigits (int `mod` 10)
 
 getPINs :: String -> [String]
 getPINs = map concat . permutations . map getCandidates . toDigits

@@ -33,6 +33,6 @@ findLeadingChar strings = head $ nub firstChars \\ concat otherChars
 
 recoverSecret :: [String] -> String
 recoverSecret []      = ""
-recoverSecret strings = [leadingChar] ++ recoverSecret otherChars
+recoverSecret strings = leadingChar : recoverSecret otherChars
   where leadingChar = findLeadingChar strings
         otherChars  = removeEmpty $ removeChar leadingChar strings

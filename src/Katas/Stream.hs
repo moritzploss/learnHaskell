@@ -21,10 +21,6 @@ import Control.Applicative
 infixr 5 :>
 data Stream a = a :> (Stream a) deriving (Show, Read, Eq, Ord)
 
--- Defined in Stream.Internal:
---     data Stream a = a :> Stream a
---     infixr :>
-
 -- | Get the first element of a stream.
 headS :: Stream a -> a
 headS (x :> _) = x
@@ -46,7 +42,7 @@ iterateS f x = x :> iterateS f (f x)
 
 -- | Construct a stream by repeating a list forever.
 cycleS :: [a] -> Stream a
-cycleS (x:xs) = x :> (cycleS $ xs ++ [x])
+cycleS (x:xs) = x :> cycleS (xs ++ [x])
 
 -- | Construct a stream by counting numbers starting from a given one.
 fromS :: Num a => a -> Stream a
@@ -66,15 +62,15 @@ foldrS f (x :> xs) = f x $ foldrS f xs
 -- | Filter a stream with a predicate.
 filterS :: (a -> Bool) -> Stream a -> Stream a
 filterS p (x :> xs)
-  | p x       = x :> tail
-  | otherwise = tail
-  where tail = filterS p xs
+  | p x       = x :> rest
+  | otherwise = rest
+  where rest = filterS p xs
 
 -- | Take a given amount of elements from a stream.
 takeS :: Int -> Stream a -> [a]
 takeS i (s :> ss)
   | i <= 0    = []
-  | otherwise = [s] ++ takeS (i - 1) ss
+  | otherwise = s : takeS (i - 1) ss
 
 -- | Drop a given amount of elements from a stream.
 dropS :: Int -> Stream a -> Stream a

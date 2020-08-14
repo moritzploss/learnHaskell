@@ -32,7 +32,7 @@
 -- Should return following list:
 
 -- [1,8,4,3,5,7]
-
+-- 
 module Katas.TreeByLevels (treeByLevels, TreeNode (..)) where
 
 import Data.Maybe (isJust)
