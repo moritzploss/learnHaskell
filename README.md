@@ -16,10 +16,6 @@ What I found easiest (on macOS) is to use `brew` to install `stack`, and to
 *not* try to install `cabal` and `ghc` manually:
 
     brew install haskell-stack
-    
-Then install **IntelliJ** and the **IntelliJ-Haskell** plugin, which provides
-syntax highlighting, code completion, type lookups with `hoogle`, and linting
-with `hlint`.
 
 ### Troubleshooting
 
