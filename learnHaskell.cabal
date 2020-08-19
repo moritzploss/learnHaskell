@@ -30,6 +30,7 @@ library
       Lib
     , Lib.Tree
     , Lib.Util
+    , Lib.Chord
     , Katas
     , Katas.MergeChecker
     , Katas.SecretFromTriplets
