@@ -16,8 +16,5 @@ getCandidates 0 = ['8', '0']
 
 toDigits :: Int -> [Int]
 toDigits int
-  | int <= 9  = [int]
+  | int <= 9 = [int]
   | otherwise = int `div` 10 : toDigits (int `mod` 10)
-
-getPINs :: String -> [String]
-getPINs = map concat . permutations . map getCandidates . toDigits

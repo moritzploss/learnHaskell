@@ -15,10 +15,11 @@
 
 module Katas.Stream where
 
-import Control.Arrow
 import Control.Applicative
+import Control.Arrow
 
 infixr 5 :>
+
 data Stream a = a :> (Stream a) deriving (Show, Read, Eq, Ord)
 
 -- | Get the first element of a stream.
@@ -28,7 +29,6 @@ headS (x :> _) = x
 -- | Drop the first element of a stream.
 tailS :: Stream a -> Stream a
 tailS (_ :> x) = x
-
 
 -- {{{ Stream constructors
 
@@ -42,7 +42,7 @@ iterateS f x = x :> iterateS f (f x)
 
 -- | Construct a stream by repeating a list forever.
 cycleS :: [a] -> Stream a
-cycleS (x:xs) = x :> cycleS (xs ++ [x])
+cycleS (x : xs) = x :> cycleS (xs ++ [x])
 
 -- | Construct a stream by counting numbers starting from a given one.
 fromS :: Num a => a -> Stream a
@@ -54,7 +54,6 @@ fromStepS x s = x :> fromStepS (x + s) s
 
 -- }}}
 
-
 -- | Fold a stream from the left.
 foldrS :: (a -> b -> b) -> Stream a -> b
 foldrS f (x :> xs) = f x $ foldrS f xs
@@ -62,20 +61,21 @@ foldrS f (x :> xs) = f x $ foldrS f xs
 -- | Filter a stream with a predicate.
 filterS :: (a -> Bool) -> Stream a -> Stream a
 filterS p (x :> xs)
-  | p x       = x :> rest
+  | p x = x :> rest
   | otherwise = rest
-  where rest = filterS p xs
+  where
+    rest = filterS p xs
 
 -- | Take a given amount of elements from a stream.
 takeS :: Int -> Stream a -> [a]
 takeS i (s :> ss)
-  | i <= 0    = []
+  | i <= 0 = []
   | otherwise = s : takeS (i - 1) ss
 
 -- | Drop a given amount of elements from a stream.
 dropS :: Int -> Stream a -> Stream a
 dropS i stream@(x :> xs)
-  | i <= 0    = stream
+  | i <= 0 = stream
   | otherwise = dropS (i - 1) xs
 
 -- | Do take and drop simultaneous.
@@ -90,22 +90,22 @@ zipS :: Stream a -> Stream b -> Stream (a, b)
 zipS = zipWithS (,)
 
 instance Functor Stream where
-    -- fmap :: (a -> b) -> Stream a -> Stream b
-    fmap f (x :> xs) = f x :> fmap f xs
+  -- fmap :: (a -> b) -> Stream a -> Stream b
+  fmap f (x :> xs) = f x :> fmap f xs
 
 instance Applicative Stream where
-    -- pure :: a -> Stream a
-    pure x = repeatS x
+  -- pure :: a -> Stream a
+  pure x = repeatS x
 
-    -- (<*>) :: Stream (a -> b) -> Stream a -> Stream b
-    (<*>) (f :> fs) (x :> xs) = f x :> (<*>) fs xs
+  -- (<*>) :: Stream (a -> b) -> Stream a -> Stream b
+  (<*>) (f :> fs) (x :> xs) = f x :> (<*>) fs xs
 
 -- | The stream of fibonacci numbers.
 fibS :: Stream Integer
 fibS = 0 :> 1 :> zipWithS (+) fibS (dropS 1 fibS)
 
 isPrime :: Integer -> Bool
-isPrime n = [x | x <- [1..n], mod n x == 0] == [1, n]
+isPrime n = [x | x <- [1 .. n], mod n x == 0] == [1, n]
 
 -- | The stream of prime numbers.
 primeS :: Stream Integer

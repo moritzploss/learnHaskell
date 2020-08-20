@@ -18,9 +18,9 @@
 module Katas.MergeChecker (isMerge) where
 
 isMerge :: String -> String -> String -> Bool
-isMerge x  y  [] = x == y
-isMerge x  []  z = x == z
-isMerge [] _   _ = False
-isMerge (x:xs) part1@(y:ys) part2@(z:zs) =
+isMerge x y [] = x == y
+isMerge x [] z = x == z
+isMerge [] _ _ = False
+isMerge (x : xs) part1@(y : ys) part2@(z : zs) =
   x == y && isMerge xs ys part2
-         || isMerge xs part1 zs
+    || isMerge xs part1 zs

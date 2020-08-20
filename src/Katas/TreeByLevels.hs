@@ -32,24 +32,26 @@
 -- Should return following list:
 
 -- [1,8,4,3,5,7]
--- 
+--
 module Katas.TreeByLevels (treeByLevels, TreeNode (..)) where
 
 import Data.Maybe (isJust)
 
-data TreeNode a = TreeNode {
-  left  :: Maybe (TreeNode a),
-  right :: Maybe (TreeNode a),
-  value :: a
-  } deriving Show
+data TreeNode a = TreeNode
+  { left :: Maybe (TreeNode a),
+    right :: Maybe (TreeNode a),
+    value :: a
+  }
+  deriving (Show)
 
 treeByLevels :: Maybe (TreeNode a) -> [a]
 treeByLevels Nothing = []
-treeByLevels tree    = breadthFirst [tree]
+treeByLevels tree = breadthFirst [tree]
   where
-    breadthFirst []    = []
-    breadthFirst trees = map nodeValue trees
-                         ++ breadthFirst (concatMap justLeftRight trees)
+    breadthFirst [] = []
+    breadthFirst trees =
+      map nodeValue trees
+        ++ breadthFirst (concatMap justLeftRight trees)
 
     nodeValue (Just (TreeNode _ _ value)) = value
     justLeftRight (Just (TreeNode left right _)) = filter isJust [left, right]

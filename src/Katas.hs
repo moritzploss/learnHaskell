@@ -1,7 +1,8 @@
 module Katas
-  ( main
-  , module Export
-  ) where
+  ( main,
+    module Export,
+  )
+where
 
 import Katas.MergeChecker as Export
 import Katas.SecretFromTriplets as Export

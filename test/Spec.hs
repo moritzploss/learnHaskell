@@ -1,22 +1,18 @@
-import Test.HUnit (runTestTT, Counts)
-import Test.Hspec (hspec)
-
+import qualified Spec.Chord
 import qualified Spec.Filter
 import qualified Spec.First
 import qualified Spec.Map
 import qualified Spec.Max
+import qualified Spec.MergeChecker
 import qualified Spec.QuickSort
 import qualified Spec.Reduce
 import qualified Spec.ReduceWhile
-import qualified Spec.Take
-import qualified Spec.Tree
-
-import qualified Spec.MergeChecker
 import qualified Spec.SecretFromTriplets
 import qualified Spec.Stream
+import qualified Spec.Take
 import qualified Spec.TreeByLevels
-
-import qualified Spec.Chord
+import Test.HUnit (Counts, runTestTT)
+import Test.Hspec (hspec)
 
 main :: IO Counts
 main = do
@@ -33,5 +29,3 @@ main = do
   runTestTT Spec.Reduce.testList
   runTestTT Spec.ReduceWhile.testList
   runTestTT Spec.Take.testList
-  runTestTT Spec.Tree.testList
-

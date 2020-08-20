@@ -1,19 +1,22 @@
 module Spec.TreeByLevels where
+
+import Katas (TreeNode (TreeNode), treeByLevels)
 import Test.Hspec
 import Test.QuickCheck
 
-import Katas (treeByLevels, TreeNode (TreeNode))
-
 buildTree :: [a] -> Maybe (TreeNode a)
 buildTree l = fst $ walk $ split 1 l
-  where split _ [] = []
-        split n l = h : split (2*n) t
-          where (h, t) = splitAt n l
-        walk [] = (Nothing, [])
-        walk ls@([] : _) = (Nothing, ls)
-        walk ((h : t) : ls) = (Just $ TreeNode l r h, t : ls'')
-          where (l, ls') = walk ls
-                (r, ls'') = walk ls'
+  where
+    split _ [] = []
+    split n l = h : split (2 * n) t
+      where
+        (h, t) = splitAt n l
+    walk [] = (Nothing, [])
+    walk ls@([] : _) = (Nothing, ls)
+    walk ((h : t) : ls) = (Just $ TreeNode l r h, t : ls'')
+      where
+        (l, ls') = walk ls
+        (r, ls'') = walk ls'
 
 testBuildTree :: (Show a, Eq a) => [a] -> Expectation
 testBuildTree x = treeByLevels (buildTree x) `shouldBe` x
