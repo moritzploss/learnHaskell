@@ -1,5 +1,5 @@
 module Lib.Chord
-  ( new,
+  ( create,
     transpose,
     major,
     minor,
@@ -24,13 +24,17 @@ data Chord = Chord
   }
   deriving (Show, Eq)
 
-new :: PitchClass -> [Int] -> Chord
-new pitchClass notes = Chord pitchClass $ IntSet.fromList notes
+create :: PitchClass -> [Int] -> Chord
+create pitchClass notes = Chord normPitchClass normNotes
+  where
+    normPitchClass = normalize pitchClass
+    normNotes = IntSet.fromList $ fmap normalize notes
+    normalize note = (note `mod` 12 + 12) `mod` 12
 
 transpose :: Interval -> Chord -> Chord
-transpose step chord = chord {pitchClass = transposed}
+transpose interval chord = chord {pitchClass = transposed}
   where
-    transposed = Note.transpose step $ pitchClass chord
+    transposed = Note.transpose interval $ pitchClass chord
 
 addNote :: Note -> Chord -> Chord
 addNote note chord = chord {notes = IntSet.insert note $ notes chord}
@@ -54,7 +58,7 @@ addMajorSeventh :: Chord -> Chord
 addMajorSeventh = addNote 11
 
 base :: PitchClass -> Chord
-base pitchClass = Chord pitchClass IntSet.empty
+base pitchClass = create pitchClass []
 
 minor :: PitchClass -> Chord
 minor = addRoot . addMinorThird . addPerfectFifth . base
