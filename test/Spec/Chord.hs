@@ -16,15 +16,17 @@ import Test.QuickCheck
 spec :: Spec
 spec = do
   describe "Chords" $ do
-    describe "chord creation" $ do
-      it "create chord with positive pitchclass wrapping" $
+    describe "create chord" $ do
+      it "with positive pitchclass wrapping" $
         create 15 [] `shouldBe` create 3 []
-      it "create chord with positive note wrapping" $
+      it "with positive note wrapping" $
         create 3 [15, 16, 5] `shouldBe` create 3 [3, 4, 5]
-      it "create chord with negative pitchclass wrapping" $
+      it "with negative pitchclass wrapping" $
         create (-5) [] `shouldBe` create 7 []
-      it "create chord with negative note wrapping" $
+      it "with negative note wrapping" $
         create 3 [-5, -6, 5] `shouldBe` create 3 [7, 6, 5]
+      it "ignore duplicate notes" $
+        create 3 [1, 1, 2] `shouldBe` create 3 [1, 2]
 
     describe "transpose" $ do
       it "positive without wrapping" $

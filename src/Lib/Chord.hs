@@ -27,9 +27,9 @@ data Chord = Chord
 create :: PitchClass -> [Int] -> Chord
 create pitchClass notes = Chord normPitchClass normNotes
   where
+    normalize note = (note `mod` 12 + 12) `mod` 12
     normPitchClass = normalize pitchClass
     normNotes = IntSet.fromList $ fmap normalize notes
-    normalize note = (note `mod` 12 + 12) `mod` 12
 
 transpose :: Interval -> Chord -> Chord
 transpose interval chord = chord {pitchClass = transposed}
