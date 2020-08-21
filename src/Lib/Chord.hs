@@ -32,7 +32,9 @@ transpose interval chord = chord {pitchClass = transposed}
     transposed = PitchClass.transpose interval $ pitchClass chord
 
 addNote :: Note -> Chord -> Chord
-addNote note chord = chord {notes = IntSet.insert note $ notes chord}
+addNote note chord = chord {notes = IntSet.insert normNote $ notes chord}
+  where
+    normNote = PitchClass.wrap note
 
 addRoot :: Chord -> Chord
 addRoot = addNote 0
