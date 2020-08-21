@@ -10,13 +10,8 @@ module Lib.Chord
 where
 
 import qualified Data.IntSet as IntSet
-import qualified Lib.Note as Note
-
-type PitchClass = Int
-
-type Interval = Int
-
-type Note = Int
+import qualified Lib.PitchClass as PitchClass
+import Lib.Types (Interval, Note, PitchClass)
 
 data Chord = Chord
   { pitchClass :: PitchClass,
@@ -24,17 +19,17 @@ data Chord = Chord
   }
   deriving (Show, Eq)
 
-create :: PitchClass -> [Int] -> Chord
-create pitchClass notes = Chord normPitchClass normNotes
-  where
-    normalize note = (note `mod` 12 + 12) `mod` 12
-    normPitchClass = normalize pitchClass
-    normNotes = IntSet.fromList $ fmap normalize notes
+create :: PitchClass -> [Note] -> Chord
+create pitchClass notes =
+  Chord
+    { pitchClass = PitchClass.wrap pitchClass,
+      notes = IntSet.fromList $ fmap PitchClass.wrap notes
+    }
 
 transpose :: Interval -> Chord -> Chord
 transpose interval chord = chord {pitchClass = transposed}
   where
-    transposed = Note.transpose interval $ pitchClass chord
+    transposed = PitchClass.transpose interval $ pitchClass chord
 
 addNote :: Note -> Chord -> Chord
 addNote note chord = chord {notes = IntSet.insert note $ notes chord}

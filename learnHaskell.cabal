@@ -31,7 +31,8 @@ library
     , Lib.Tree
     , Lib.Util
     , Lib.Chord
-    , Lib.Note
+    , Lib.PitchClass
+    , Lib.Types
     , Katas
     , Katas.MergeChecker
     , Katas.SecretFromTriplets
